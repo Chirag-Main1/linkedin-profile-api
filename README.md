@@ -11,6 +11,18 @@ A Go API that reverse engineers LinkedIn's internal Voyager API to return struct
 curl "https://linkedin-profile-api-production-c6ab.up.railway.app/profile?url=https://www.linkedin.com/in/williamhgates"
 ```
 
+## ⚡ Pre-warmed Profiles (Instant Response)
+
+These profiles are already cached and will respond instantly:
+
+| Profile | URL |
+|---------|-----|
+| Bill Gates | `https://linkedin-profile-api-production-c6ab.up.railway.app/profile?url=https://www.linkedin.com/in/williamhgates` |
+| Sundar Pichai | `https://linkedin-profile-api-production-c6ab.up.railway.app/profile?url=https://www.linkedin.com/in/sundarpichai` |
+| Satya Nadella | `https://linkedin-profile-api-production-c6ab.up.railway.app/profile?url=https://www.linkedin.com/in/satyanadella` |
+
+> **Note:** LinkedIn aggressively rate-limits requests from datacenter IPs (like Railway). Pre-cached profiles always return instantly. New profiles may occasionally return a 401 if LinkedIn blocks the session — this is a known LinkedIn anti-scraping measure, not a bug in the API.
+
 ## How It Works
 
 LinkedIn's web app communicates with an undocumented internal API at `/voyager/api`. This service makes authenticated requests to that API using session cookies and returns a clean structured JSON response.
